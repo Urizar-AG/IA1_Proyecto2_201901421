@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="titlebar">
+        <h1>IA1 Proyecto 2 - 201901421</h1>
+    </header>
+    <div class="container">
+        <input type="file" accept=".csv" id="filepicker">
+        <select id="model">
+            <option value="lr" selected>Linear Regression</option>
+            <option value="pr">Polynomial Regression</option>
+            <option value="dt">Decision Trees</option>
+            <option value="nb">Naive Bayes</option>
+            <option value="nn">Neural Networks</option>
+            <option value="km">K-means</option>
+            <option value="kn">K-nearst-neighbor</option>
+        </select>
+        <button id="train">Entrenamiento</button>
+        <button id="predict">Predicciones</button>
+        <button>Tendencias</button>
+        <button>Patrones</button>
+    </div>
+    <div class="main-container">
+        <div class="parameters-container">
+            <div class="linear-regression">
+                <h4>xTrain</h4>
+                <select id="xtrain">
+                    <option value=0 selected>Columna 1</option>
+                    <option value=1 >Columna 2</option>
+                </select>
+                <h4>yTrain</h4>
+                <select id="ytrain">
+                    <option value=0>Columna 1</option>
+                    <option value=1 selected>Columna 2</option>
+                </select>
+            </div>
+        </div>
+        <div class="result-container">
+            <div class="linear-regression">
+                <h4>yPredict</h4>
+                <p id="ypredict"></p>
+                <div class="graph-container">
+                    <canvas id="linear-regression-graph"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="tytus.js"></script>
+</body>
+</html>
