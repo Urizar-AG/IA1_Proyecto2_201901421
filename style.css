@@ -74,6 +74,7 @@ h4 {
     height: calc(100vh - 100px);
     display: flex;
     gap: 10px;
+    box-sizing: border-box;
 }
 
 .main-container .parameters-container {
@@ -83,6 +84,7 @@ h4 {
 
 .main-container .result-container {
     width: 90%;
+    overflow-y: auto;
     border-left: 2px solid #1971C2;
 }
 
