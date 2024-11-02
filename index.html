@@ -15,20 +15,13 @@
         <select id="model">
             <option value="lr" selected>Linear Regression</option>
             <option value="pr">Polynomial Regression</option>
-            <option value="dt">Decision Trees</option>
-            <option value="nb">Naive Bayes</option>
-            <option value="nn">Neural Networks</option>
-            <option value="km">K-means</option>
-            <option value="kn">K-nearst-neighbor</option>
         </select>
         <button id="train">Entrenamiento</button>
         <button id="predict">Predicciones</button>
-        <button>Tendencias</button>
-        <button>Patrones</button>
     </div>
     <div class="main-container">
         <div class="parameters-container">
-            <div class="linear-regression">
+            <div class="linear-regression" id="lr-parameters">
                 <h4>xTrain</h4>
                 <select id="xtrain">
                     <option value=0 selected>Columna 1</option>
@@ -40,13 +33,46 @@
                     <option value=1 selected>Columna 2</option>
                 </select>
             </div>
+            <div class="polynomial-regression" id="pr-parameters">
+                <h4>xTrain</h4>
+                <select id="xtrain-pr">
+                    <option value=0 selected>Columna 1</option>
+                    <option value=1 >Columna 2</option>
+                    <option value=2 >Columna 3</option>
+                </select>
+                <h4>yTrain</h4>
+                <select id="ytrain-pr">
+                    <option value=0>Columna 1</option>
+                    <option value=1 selected>Columna 2</option>
+                    <option value=2>Columna 3</option>
+                </select>
+                <h4>xToPredict</h4>
+                <select id="xtopredict-pr">
+                    <option value=0>Columna 1</option>
+                    <option value=1>Columna 2</option>
+                    <option value=2 selected>Columna 3</option>
+                </select>
+                <h4>Degree</h4>
+                <select id="degree-pr">
+                    <option value=2 selected>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                </select>
+            </div>
         </div>
         <div class="result-container">
-            <div class="linear-regression">
+            <div class="linear-regression" id="lr-result">
                 <h4>yPredict</h4>
                 <p id="ypredict"></p>
                 <div class="graph-container">
                     <canvas id="linear-regression-graph"></canvas>
+                </div>
+            </div>
+            <div class="polynomial-regression" id="pr-result">
+                <h4>y Prediction Degree</h4>
+                <p id="ypredictiondegree"></p>
+                <div class="graph-container">
+                    <canvas id="polynomial-regression-graph"></canvas>
                 </div>
             </div>
         </div>

@@ -88,6 +88,10 @@ h4 {
     border-left: 2px solid #1971C2;
 }
 
+.graph-container {
+    width: 800px;
+}
+
 .linear-regression {
     padding: 0 10px;
     display: flex;
@@ -95,17 +99,22 @@ h4 {
     align-items: center;
 }
 
-.linear-regression h4 {
+.linear-regression h4,
+.polynomial-regression h4 {
     justify-self: flex-start;
     align-self: self-start;
 }
 
-.linear-regression p {
+.linear-regression p,
+.polynomial-regression p {
     word-break: break-all;
     white-space: normal;
     margin-top: 0;
 }
 
-.graph-container {
-    width: 800px;
+.polynomial-regression {
+    padding: 0 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
 }
