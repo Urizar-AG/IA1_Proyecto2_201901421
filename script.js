@@ -1,25 +1,45 @@
 // Modelos
-const lr = new LinearRegression();
-const pr = new PolynomialRegression();
+let lr = new LinearRegression();
+let pr = new PolynomialRegression();
+const designed = [2, 4, 3, 2];
+let nn = new NeuralNetwork(designed);
 let dataSet = [];
 let xTrain = [];
 let yTrain = [];
 let xToPredict = [];
 let degree = 2;
+let gt1 = null;
+let lt1 = null;
+let gt2 = null;
+let lt2 = null;
 let graph = null;
 
 document.getElementById('model').addEventListener('change', () => {
     const model = document.getElementById('model').value;
     if (model === 'lr') {
+        lr = new LinearRegression();
         document.getElementById('lr-parameters').style.display = 'flex';
         document.getElementById('lr-result').style.display = 'flex';
         document.getElementById('pr-parameters').style.display = 'none';  
         document.getElementById('pr-result').style.display = 'none';  
+        document.getElementById('nn-parameters').style.display = 'none';  
+        document.getElementById('nn-result').style.display = 'none';  
     }else if(model === 'pr') {
+        pr = new PolynomialRegression();
         document.getElementById('lr-parameters').style.display = 'none';
         document.getElementById('lr-result').style.display = 'none';
         document.getElementById('pr-parameters').style.display = 'flex';  
         document.getElementById('pr-result').style.display = 'flex';
+        document.getElementById('nn-parameters').style.display = 'none';  
+        document.getElementById('nn-result').style.display = 'none';  
+    }else if(model === 'nn') {
+        nn = new NeuralNetwork(designed);
+        document.getElementById('lr-parameters').style.display = 'none';
+        document.getElementById('lr-result').style.display = 'none';
+        document.getElementById('pr-parameters').style.display = 'none';  
+        document.getElementById('pr-result').style.display = 'none';
+        document.getElementById('nn-parameters').style.display = 'flex';  
+        document.getElementById('nn-result').style.display = 'flex';  
     }
 });
 
@@ -44,6 +64,38 @@ document.getElementById('train').addEventListener('click', () => {
         yTrain = dataSet[y];
         xToPredict = dataSet[xpr];
         pr.fit(xTrain, yTrain, degree);
+    }else if(model === 'nn') {
+        let n1 = document.getElementById('gt').value.split(',')[0];
+        let n2 = document.getElementById('gt').value.split(',')[1];
+        let n3 = document.getElementById('lt').value.split(',')[0];
+        let n4 = document.getElementById('lt').value.split(',')[1];
+        // Entrenamiento para probabilidad de mayor
+        for (let x = 0; x < 2; x++) {
+            for (let i = 0; i < 10000; i++) {
+                let num1 = Math.random(), num2 = Math.random();
+                nn.Entrenar([num1, num2], (num1 > num2 ? [1, 0] : [0, 1]));
+            }
+            if (x == 0) { 
+                gt1 = nn.Predecir([n1, n2]);
+            }
+            else { 
+                lt1 = nn.Predecir([n2, n1]); 
+            }
+        }
+        // Entrenamiento para probablidad de menor
+        for (let x = 0; x < 2; x++) {
+            for (let i = 0; i < 10000; i++) {
+                let num1 = Math.random(), num2 = Math.random();
+                nn.Entrenar([num1, num2], (num1 < num2 ? [1, 0] : [0, 1]));
+            }
+            if (x == 0) { 
+                gt2 = nn.Predecir([n3, n4]); 
+            }
+            else { 
+                lt2 = nn.Predecir([n4, n3]); 
+            }
+        }
+        
     }
     alert('Modelo entrenado');
 });
@@ -59,6 +111,10 @@ document.getElementById('predict').addEventListener('click', () => {
         const yPredictionDegree = pr.predict(xToPredict);
         document.getElementById('ypredictiondegree').textContent = yPredictionDegree;
         graphPolynomialRegression(yPredictionDegree);
+    }else if(model === 'nn') {
+        console.log(gt1, gt2);
+        document.getElementById('gt-result').textContent = gt1;
+        document.getElementById('lt-result').textContent = gt2;
     }
 });
 

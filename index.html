@@ -15,6 +15,7 @@
         <select id="model">
             <option value="lr" selected>Linear Regression</option>
             <option value="pr">Polynomial Regression</option>
+            <option value="nn">Neuronal Network</option>
         </select>
         <button id="train">Entrenamiento</button>
         <button id="predict">Predicciones</button>
@@ -59,6 +60,12 @@
                     <option value=4>4</option>
                 </select>
             </div>
+            <div class="neuronal-network" id="nn-parameters">
+                <h4>n1 &gt n2</h4>
+                <input type="text" id="gt">  
+                <h4>n1 &lt n2</h4>
+                <input type="text" id="lt">
+            </div>
         </div>
         <div class="result-container">
             <div class="linear-regression" id="lr-result">
@@ -74,6 +81,12 @@
                 <div class="graph-container">
                     <canvas id="polynomial-regression-graph"></canvas>
                 </div>
+            </div>
+            <div class="neuronal-network" id="nn-result">
+                <h4>n1 &gt n2</h4>
+                <p id="gt-result"></p>
+                <h4>n2 &lt n1</h4>
+                <p id="lt-result"></p>
             </div>
         </div>
     </div>
